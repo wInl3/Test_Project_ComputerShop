@@ -1,0 +1,53 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jul 1, 2025, 1:42:12 AM
+    Author     : PC
+*/
+
+.cart-dropdown {
+    position: relative;
+    list-style: none;
+}
+
+.cart-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    right: 0;
+    top: 100%;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+.cart-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.cart-dropdown .dropdown-content a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+}
+
+.cart-dropdown .dropdown-content a:hover {
+    background-color: #f5f5f5;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+}

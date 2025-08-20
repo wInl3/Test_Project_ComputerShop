@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head >
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Build PC | CyberBeast</title>
+
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/prettyPhoto.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/price-range.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/animate.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/main.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/responsive.css" rel="stylesheet">
+        <link href="/ComputerOnlineShop/ShopPages/Pages/css/CartCss.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+        <script src="/ComputerOnlineShop/ShopPages/Pages/js/html5shiv.js"></script>
+        <script src="/ComputerOnlineShop/ShopPages/Pages/js/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel="shortcut icon" href="/ComputerOnlineShop/ShopPages/Pages/images/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ComputerOnlineShop/ShopPages/Pages/images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ComputerOnlineShop/ShopPages/Pages/images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ComputerOnlineShop/ShopPages/Pages/images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ComputerOnlineShop/ShopPages/Pages/images/ico/apple-touch-icon-57-precomposed.png">
+        <style>
+            .component-block {
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                padding: 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .component-image {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                margin-right: 15px;
+            }
+            .modal-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                z-index: 9999;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            .modal-content {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                padding: 30px;
+                overflow-y: auto;
+            }
+
+
+            .close-btn {
+                float: right;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .build-pc-banner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 30px 0;
+                background: linear-gradient(to right, #f9f9f9, #ffffff);
+            }
+
+            .build-pc-banner img {
+                max-width: 350px;
+                width: 100%;
+                height: auto;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                transition: transform 0.3s ease;
+            }
+
+            .build-pc-banner img:hover {
+                transform: scale(1.03);
+            }
+
+            .modal-content {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                width: 90%;
+                max-width: 900px;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+        </style>
+    </head>
+    <body><!-- comment -->
+        <header id="header">
+            <div class="header_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="contactinfo">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#"><i class="fa fa-phone"></i> 0337593524</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i> CyberBeast@gmail.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="social-icons pull-right">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="logo pull-left">
+                                <a href="/ComputerOnlineShop/HomePages"><img src="/ComputerOnlineShop/ShopPages/Pages/images/home/CyberBeast2.png" style="height: 150px; width: 200px;" /></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="shop-menu pull-right">
+                                <ul class="nav navbar-nav" style="padding-top: 50px;">
+                                    <!-- Menu dành cho người dùng đã đăng nhập và roleID = 3 -->
+                                    <div id="user-nav" style="display: none;">
+                                        <li class="cart-dropdown">
+                                            <a href="#"><i class="fa fa-shopping-cart"></i> Warranty</a>
+                                            <div class="dropdown-content">
+                                                <div class="arrow-up"></div>
+                                                <a href="/ComputerOnlineShop/Product?service=checkWarranty">Warranty Item</a>
+                                                <a href="/ComputerOnlineShop/Product?service=checkWarrantyBuildPC">Warranty Build PC</a>
+                                            </div>
+                                        </li>
+                                        <li class="cart-dropdown">
+                                            <a href="#"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                            <div class="dropdown-content">
+                                                <div class="arrow-up"></div>
+                                                <a href="/ComputerOnlineShop/Cart">CartItem</a>
+                                                <a href="/ComputerOnlineShop/CardBuildPc">CartPC</a>
+                                            </div>
+                                        </li>
+                                        <li><a href="/ComputerOnlineShop/OrderHistory"><i class="fa fa-list-alt"></i> Order history</a></li>
+                                        <li><a href="/ComputerOnlineShop/User?service=myAccount"><i class="fa fa-user"></i> Account</a></li>
+             
+                                        <li><a href="/ComputerOnlineShop/Logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                    </div>
+
+                                    <!-- Menu dành cho người chưa đăng nhập -->
+                                    <div id="guest-nav" style="display: none;">
+                                        <li><a href="/ComputerOnlineShop/Login"><i class="fa fa-lock"></i> Login</a></li>
+                                        <li><a href="/ComputerOnlineShop/SignUp"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="mainmenu pull-left">
+                                <ul class="nav navbar-nav collapse navbar-collapse">
+                                    <li><a href="/ComputerOnlineShop/HomePages">Home</a></li>
+                                    <li><a href="/ComputerOnlineShop/CategoriesController?service=list">Products</a></li>
+                                    <li><a href="/ComputerOnlineShop/blogc">Blog</a></li>
+                                    <li><a href="#" class="active">Build your PC</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="build-pc-banner">
+            <img src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/BuildPC.png" alt="Build Your PC" style="max-width: 20%; height: auto;">
+        </div>
+
+
+        <div>
+            <button class="btn btn-sm btn-success col-sm-12" onclick="openPCList()">PC Case</button>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-warning col-sm-12" onclick="resetAllComponents()">Reset All</button>
+        </div>
+
+        <!-- Modal hiển thị danh sách PC -->
+        <div class="modal-overlay" id="pcListModal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-btn" onclick="document.getElementById('pcListModal').style.display = 'none'">&times;</span>
+                <h4>ListPC</h4>
+                <div id="pcListBody">Đang tải...</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <!--MainBoard -->
+                    <div class="component-block" id="component-2">
+                        <div class="d-flex align-items-center">
+                            <img id="img-2" src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/2.jpg"
+                                 data-default="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/2.jpg"
+                                 alt="MainBoard" class="component-image">
+                            <div>
+                                <strong>MainBoard</strong>
+                                <div id="meta-2" class="component-meta"></div>
+                                <div id="price-2" class="component-price"></div>
+                                <div id="warranty-2" class="component-warranty"></div>
+                                <div id="total-2" class="component-total text-success"></div>
+                                <button id="remove-2" class="btn btn-sm btn-danger mt-2" style="display:none;" onclick="removeComponent(2)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="openModal(2, 'MainBoard')">Choose</button>
+                    </div>
+                    <!--CPU -->
+                    <div class="component-block" id="component-3">
+                        <div class="d-flex align-items-center">
+                            <img id="img-3" src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/3.jpg"
+                                 data-default="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/3.jpg"
+                                 alt="MainBoard" class="component-image">
+                            <div>
+                                <strong>CPU</strong>
+                                <div id="meta-3" class="component-meta"></div>
+                                <div id="price-3" class="component-price"></div>
+                                <div id="warranty-3" class="component-warranty"></div>
+                                <div id="total-3" class="component-total text-success"></div>
+                                <button id="remove-3" class="btn btn-sm btn-danger mt-3" style="display:none;" onclick="removeComponent(3)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="openModal(3, 'CPU')">Choose</button>
+                    </div>
+                    <!--GPU -->
+                    <div class="component-block" id="component-4">
+                        <div class="d-flex align-items-center">
+                            <img id="img-4" src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/4.jpg"
+                                 data-default="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/4.jpg"
+                                 alt="MainBoard" class="component-image">
+                            <div>
+                                <strong>GPU</strong>
+                                <div id="meta-4" class="component-meta"></div>
+                                <div id="price-4" class="component-price"></div>
+                                <div id="warranty-4" class="component-warranty"></div>
+                                <div id="total-4" class="component-total text-success"></div>
+                                <button id="remove-4" class="btn btn-sm btn-danger mt-4" style="display:none;" onclick="removeComponent(4)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="openModal(4, 'GPU')">Choose</button>
+                    </div>
+                    <!--RAM --> 
+                    <div class="component-block" id="component-5">
+                        <div class="d-flex align-items-center">
+                            <img id="img-5" src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/5.jpg"
+                                 data-default="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/5  .jpg"
+                                 alt="MainBoard" class="component-image">
+                            <div>
+                                <strong>RAM</strong>
+                                <div id="meta-5" class="component-meta"></div>
+                                <div id="price-5" class="component-price"></div>
+                                <div id="warranty-5" class="component-warranty"></div>
+                                <div id="total-5" class="component-total text-success"></div>
+                                <button id="remove-5" class="btn btn-sm btn-danger mt-5" style="display:none;" onclick="removeComponent(5)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="openModal(5, 'RAM')">Choose</button>
+                    </div>
+                    <!--SSD--> 
+                    <div class="component-block" id="component-6">
+                        <div class="d-flex align-items-center">
+                            <img id="img-6" src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/6.webp"
+                                 data-default="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/6.webp "
+                                 alt="MainBoard" class="component-image">
+                            <div>
+                                <strong>SSD</strong>
+                                <div id="meta-6" class="component-meta"></div>
+                                <div id="price-6" class="component-price"></div>
+                                <div id="warranty-6" class="component-warranty"></div>
+                                <div id="total-6" class="component-total text-success"></div>
+                                <button id="remove-6" class="btn btn-sm btn-danger mt-6" style="display:none;" onclick="removeComponent(6)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="openModal(6, 'SSD')">Choose</button>
+                    </div>
+                    <!--Case--> 
+                    <div class="component-block" id="component-7">
+                        <div class="d-flex align-items-center">
+                            <img id="img-7" src="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/7.jpg"
+                                 data-default="/ComputerOnlineShop/ShopPages/Pages/images/anhproduct/7.jpg"
+                                 alt="MainBoard" class="component-image">
+                            <div>
+                                <strong>Case</strong>
+                                <div id="meta-7" class="component-meta"></div>
+                                <div id="price-7" class="component-price"></div>
+                                <div id="warranty-7" class="component-warranty"></div>
+                                <div id="total-7" class="component-total text-success"></div>
+                                <button id="remove-7" class="btn btn-sm btn-danger mt-7" style="display:none;" onclick="removeComponent(7)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="openModal(7, 'Case')">Choose</button>
+                    </div>
+
+                    <!--Open modal--> 
+                    <div class="modal-overlay" id="customModal">
+                        <div class="modal-content">
+                            <span class="close-btn" id="closeModal">&times;</span>
+                            <h4 id="modalTitle">Select Component</h4>
+                            <div id="modalBody">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border p-3 mt-3">
+                        <h4 class="text-center mb-3" style="">Total Price</h4>
+                        <h3 class="text-center text-success"><span id="totalPrice">0</span>₫</h3>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-success add-to-cart-btn">
+                    Add to cart
+                </button>
+
+            </div>
+        </div>
+    </body>
+    <script>
+        const ctx = "/ComputerOnlineShop";
+    </script>
+    <script>
+        fetch("/ComputerOnlineShop/BuildPC?service=getRoleID")
+                .then(res => res.json())
+                .then(data => {
+                    const roleID = data.roleID;
+
+                    if (roleID === 3) {
+                        // Người dùng role khách hàng → hiển thị menu user
+                        document.getElementById("user-nav").style.display = "block";
+                        document.getElementById("guest-nav").style.display = "none";
+                    } else {
+                        // Chưa đăng nhập hoặc không đúng quyền
+                        document.getElementById("user-nav").style.display = "none";
+                        document.getElementById("guest-nav").style.display = "block";
+                    }
+                })
+                .catch(err => {
+                    console.error("Lỗi khi lấy roleID:", err);
+                    document.getElementById("user-nav").style.display = "none";
+                    document.getElementById("guest-nav").style.display = "block";
+                });
+    </script>
+
+    <script>
+        const modal = document.getElementById('customModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const totalDisplay = document.getElementById('totalPrice');
+        const selectedComponents = {};
+// open model
+        function openModal(componentID, componentName) {
+            modal.style.display = 'flex';
+            modalTitle.innerText = `Select ${componentName}`;
+            modalBody.innerHTML = "<p>Loading...</p>";
+            document.body.style.overflow = "hidden";
+            fetch(`${ctx}/BuildPC?service=filter&componentID=${componentID}&ajax=true`)
+                    .then(res => res.text())
+                    .then(html => {
+                        modalBody.innerHTML = html;
+                        attachFilterFormHandler(componentID, componentName);
+                        attachPaginationHandler(componentID, componentName);
+                    })
+                    .catch(err => {
+                        modalBody.innerHTML = "<p style='color:red;'>Failed to load data</p>";
+                    });
+        }
+        // make model not close
+        function attachFilterFormHandler(componentID, componentName) {
+            const filterForm = modalBody.querySelector('#filterForm');
+            if (filterForm) {
+                attachPriceValidation();
+
+                filterForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const url = filterForm.action + '?' + new URLSearchParams(new FormData(filterForm)).toString();
+
+                    fetch(url)
+                            .then(res => res.text())
+                            .then(innerHtml => {
+                                modalBody.innerHTML = innerHtml;
+                                attachFilterFormHandler(componentID, componentName);
+                                attachPaginationHandler(componentID, componentName);
+                            });
+                });
+            }
+        }
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = "";
+        });
+
+        window.addEventListener('click', function (e) {
+            const modalOverlay = document.getElementById('customModal');
+            const modalContent = document.querySelector('.modal-content');
+
+            const isModalOpen = modalOverlay.style.display === 'flex';
+
+            // Nếu modal đang mở và click trực tiếp vào phần overlay (không phải modal-content)
+            if (isModalOpen && e.target === modalOverlay) {
+                modalOverlay.style.display = 'none';
+                document.body.style.overflow = "";
+            }
+        });
+
+
+
+        function restoreSelections() {
+            const stored = localStorage.getItem("selectedComponents");
+            if (stored) {
+                Object.assign(selectedComponents, JSON.parse(stored));
+                for (let key in selectedComponents) {
+                    const data = selectedComponents[key];
+                    const meta = document.getElementById(`meta-${key}`);
+                    const price = document.getElementById(`price-${key}`);
+                    const removeBtn = document.getElementById(`remove-${key}`);
+                    const img = document.getElementById(`img-${key}`);
+
+                    if (meta && price && removeBtn && img) {
+                        meta.innerText = `${data.categoryName} - ${data.brandName}`;
+                        price.innerText = `Price: ${data.price.toLocaleString()}₫`;
+
+                        const warrantyText = data.warrantyDesc ? `warranty: ${data.warrantyDesc} - ${data.warrantyPrice.toLocaleString()}₫` : "Bảo hành: Không chọn";
+                        document.getElementById(`warranty-${key}`).innerText = warrantyText;
+
+                        const totalItem = data.price + (data.warrantyPrice || 0);
+                        document.getElementById(`total-${key}`).innerText = `Total Money: ${totalItem.toLocaleString()}₫`;
+
+                        removeBtn.style.display = 'inline-block';
+                        img.src = `${ctx}/ShopPages/Pages/images/CatePicture/${data.imgURL}`;
+
+                    }
+
+                }
+                updateTotal();
+            }
+
+
+        }
+        window.addEventListener('load', restoreSelections);
+
+// Update money
+        function updateTotal() {
+            let total = 0;
+            for (let key in selectedComponents) {
+                total += selectedComponents[key].price;
+            }
+            totalDisplay.innerText = total.toLocaleString();
+        }
+// reset All choose
+        function resetAllComponents() {
+            if (!confirm("Are you want to delete all choosed ?"))
+                return;
+            localStorage.removeItem("selectedComponents");
+            for (let id = 2; id <= 7; id++) {
+                const meta = document.getElementById(`meta-${id}`);
+                const price = document.getElementById(`price-${id}`);
+                const warranty = document.getElementById(`warranty-${id}`);
+                const total = document.getElementById(`total-${id}`);
+                const removeBtn = document.getElementById(`remove-${id}`);
+                const img = document.getElementById(`img-${id}`);
+                if (meta)
+                    meta.innerText = "";
+                if (price)
+                    price.innerText = "";
+                if (warranty)
+                    warranty.innerText = "";
+                if (total)
+                    total.innerText = "";
+                if (removeBtn)
+                    removeBtn.style.display = "none";
+                if (img)
+                    img.src = img.getAttribute("data-default");
+            }
+            totalDisplay.innerText = "0";
+            for (let key in selectedComponents)
+                delete selectedComponents[key];
+        }
+    </script>
+    <script>
+        function selectProduct(componentID, realCategoryID, categoryName, brandName, price, imgURL, warrantyDesc = "", warrantyPrice = 0, warrantyDetailID = 0) {
+            price = parseInt(price);
+            warrantyPrice = parseInt(warrantyPrice) || 0;
+            warrantyDetailID = parseInt(warrantyDetailID) || 0;
+
+            document.getElementById(`meta-${componentID}`).innerText = `${categoryName} - ${brandName}`;
+            document.getElementById(`price-${componentID}`).innerText = `Product: ${price.toLocaleString()}₫`;
+
+            const warrantyText = warrantyDesc ? `Warranty: ${warrantyDesc} - ${warrantyPrice.toLocaleString()}₫` : "Warranty: Not Choose";
+            document.getElementById(`warranty-${componentID}`).innerText = warrantyText;
+
+            const totalItem = price + warrantyPrice;
+            document.getElementById(`total-${componentID}`).innerText = `Total: ${totalItem.toLocaleString()}₫`;
+
+            document.getElementById(`remove-${componentID}`).style.display = 'inline-block';
+
+            const image = document.getElementById(`img-${componentID}`);
+            if (image) {
+                image.src = `${ctx}/ShopPages/Pages/images/CatePicture/${encodeURIComponent(imgURL || "default.jpg")}`;
+            }
+
+            selectedComponents[componentID] = {
+                categoryID: realCategoryID,
+                categoryName,
+                brandName,
+                price,
+                imgURL,
+                warrantyDesc,
+                warrantyPrice,
+                warrantyDetailID
+            };
+
+            localStorage.setItem("selectedComponents", JSON.stringify(selectedComponents));
+            updateTotal();
+            document.getElementById("customModal").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+
+
+        function updateTotal() {
+            let total = 0;
+            for (let key in selectedComponents) {
+                total += selectedComponents[key].price;
+                if (selectedComponents[key].warrantyPrice) {
+                    total += selectedComponents[key].warrantyPrice;
+                }
+            }
+            totalDisplay.innerText = total.toLocaleString();
+        }
+
+
+
+// Delete Component
+        function removeComponent(componentID) {
+            const confirmDelete = confirm("Are you sure you want to remove this component?");
+            if (!confirmDelete)
+                return;
+
+            delete selectedComponents[componentID];
+            localStorage.setItem("selectedComponents", JSON.stringify(selectedComponents));
+
+            document.getElementById(`meta-${componentID}`).innerText = "";
+            document.getElementById(`price-${componentID}`).innerText = "";
+            document.getElementById(`warranty-${componentID}`).innerText = "";
+            document.getElementById(`total-${componentID}`).innerText = "";
+            document.getElementById(`remove-${componentID}`).style.display = 'none';
+
+            const img = document.getElementById(`img-${componentID}`);
+            img.src = img.getAttribute("data-default");
+
+            updateTotal();
+        }
+
+
+
+
+    </script>
+    <!--Select Pages-->
+    <script>
+        function goToPage(page) {
+            const form = document.getElementById("filterForm");
+            const formData = new FormData(form);
+            formData.set("page", page);
+            const queryString = new URLSearchParams(formData).toString();
+
+            fetch(`${ctx}/BuildPC?${queryString}`)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("modalBody").innerHTML = html;
+                        attachFilterFormHandler();
+                        attachPaginationHandler();
+                    });
+        }
+
+
+        function attachPaginationHandler() {
+            modalBody.querySelectorAll(".page-link").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const page = parseInt(this.getAttribute("data-page"));
+                    if (!isNaN(page)) {
+                        goToPage(page);
+                    }
+                });
+            });
+        }
+
+    </script>
+    <script>
+        function attachPriceValidation() {
+            const priceInputs = document.querySelectorAll('input[name="minPrice"], input[name="maxPrice"]');
+
+            priceInputs.forEach(input => {
+                input.addEventListener('keypress', function (e) {
+                    const char = String.fromCharCode(e.which);
+                    if (!/^[0-9]$/.test(char))
+                        e.preventDefault();
+                });
+
+                input.addEventListener('paste', function (e) {
+                    const paste = (e.clipboardData || window.clipboardData).getData('text');
+                    if (!/^\d+$/.test(paste))
+                        e.preventDefault();
+                });
+
+                input.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            });
+        }
+
+    </script>
+
+    <script>
+        //load buildpc of admin
+        function openPCList() {
+            const modal = document.getElementById("pcListModal");
+            const body = document.getElementById("pcListBody");
+            modal.style.display = "flex";
+            body.innerHTML = "Loading...";
+
+            fetch(ctx + "/BuildPC?service=pc", {
+                method: "POST"
+            })
+                    .then(res => res.text())
+                    .then(html => {
+                        body.innerHTML = html;
+                    })
+                    .catch(err => {
+                        body.innerHTML = "<p style='color:red;'>Lỗi khi tải danh sách PC</p>";
+                    });
+        }
+        // update cate when chose PC
+        function loadPC(buildPCID, imgMain, imgCPU, imgGPU, imgRAM, imgSSD, imgCase) {
+            fetch(`${ctx}/BuildPC?service=loadBuildPC&buildPCID=${buildPCID}`)
+                    .then(res => res.text())
+                    .then(data => {
+                        const items = data.split(';').filter(Boolean);
+                        const components = {};
+
+                        items.forEach(line => {
+                            const parts = line.split('|');
+                            if (parts.length !== 9) {
+                                console.error("Missing Warranty information:", line);
+                                return;
+                            }
+
+                            const [categoryID, categoryName, brandName, price, imageURL, rawComponentID, warrantyDesc, warrantyPrice, warrantyDetailID] = parts;
+                            const componentID = parseInt(rawComponentID);
+                            const rawImageURL = imageURL || "default.jpg";
+                            const safeImageURL = rawImageURL.trim() === "" ? "default.jpg" : rawImageURL;
+
+                            components[componentID] = {
+                                categoryID,
+                                categoryName,
+                                brandName,
+                                price: parseInt(price),
+                                imgURL: safeImageURL, // ✅ đảm bảo ảnh không null
+                                warrantyDesc,
+                                warrantyPrice: parseInt(warrantyPrice) || 0,
+                                warrantyDetailID: parseInt(warrantyDetailID) || 0
+                            };
+
+                        });
+
+                        for (let id = 2; id <= 7; id++) {
+                            const comp = components[id];
+                            if (comp) {
+                                document.getElementById(`meta-${id}`).innerText = `${comp.categoryName} - ${comp.brandName}`;
+                                document.getElementById(`price-${id}`).innerText = `Category: ${comp.price.toLocaleString()}₫`;
+
+                                const warrantyText = comp.warrantyDesc && comp.warrantyDesc !== "Non-Warranty"
+                                        ? `Warranty: ${comp.warrantyDesc} - ${comp.warrantyPrice.toLocaleString()}₫`
+                                        : "Non-Warranty: Not Choose";
+
+                                document.getElementById(`warranty-${id}`).innerText = warrantyText;
+
+                                document.getElementById(`remove-${id}`).style.display = 'inline-block';
+                                document.getElementById(`img-${id}`).src = `${ctx}/ShopPages/Pages/images/CatePicture/${encodeURIComponent(comp.imgURL || "default.jpg")}`;
+
+                                selectedComponents[id] = {
+                                    categoryID: comp.categoryID,
+                                    categoryName: comp.categoryName,
+                                    brandName: comp.brandName,
+                                    price: comp.price,
+                                    imgURL: comp.imgURL,
+                                    warrantyDesc: comp.warrantyDesc,
+                                    warrantyPrice: comp.warrantyPrice,
+                                    warrantyDetailID: comp.warrantyDetailID
+                                };
+                            }
+                        }
+
+                        localStorage.setItem("selectedComponents", JSON.stringify(selectedComponents));
+                        updateTotal();
+                        restoreSelections();
+                        document.getElementById("pcListModal").style.display = 'none';
+                    })
+                    .catch(() => alert("Fail in dowload PC Category"));
+        }
+    </script>
+    <!-- Add to cart -->
+    <script>
+        document.querySelector(".add-to-cart-btn").addEventListener("click", function () {
+            const requiredIDs = [2, 3, 4, 5, 6, 7];
+
+            const isComplete = requiredIDs.every(id => selectedComponents.hasOwnProperty(id));
+            if (!isComplete) {
+                alert("You need to choose correct 6 product.");
+                return;
+            }
+
+            const params = new URLSearchParams();
+            params.append("service", "addBuildPCToCart");
+
+            requiredIDs.forEach(id => {
+                const comp = selectedComponents[id];
+                params.append("categories[]", comp.categoryID);
+
+                if (comp.warrantyDetailID && comp.warrantyDetailID > 0) {
+                    params.append("warrantyDetailIDs[]", comp.warrantyDetailID);
+                } else {
+                    params.append("warrantyDetailIDs[]", "0");
+                }
+            });
+
+            fetch(`${ctx}/BuildPC`, {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: params
+            })
+                    .then(res => res.text())
+                    .then(msg => {
+                        if (msg === "NOT_LOGGED_IN") {
+                            alert("Please login to add to cart .");
+                            window.location.href = ctx + "/Login";
+                        } else if (msg === "SUCCESS") {
+                            alert("ADD to cart successfuly!");
+                            resetAllComponents();
+                        } else {
+                            alert("Can't add to card( have some problem.");
+                        }
+                    })
+                    .catch(() => alert("Cant't connect to server!"));
+        });
+
+    </script>
+    <!-- Choose Warranty -->
+    <script>
+        function chooseProductWithWarranty(componentID, realCategoryID, categoryName, brandName, price, imgURL, radioCategoryID) {
+            const selectedRadio = document.querySelector(`input[name="warranty-${radioCategoryID}"]:checked`);
+
+            let warrantyDetailID = 0;
+            let warrantyDesc = "Not choose";
+            let warrantyPrice = 0;
+
+            if (selectedRadio) {
+                warrantyDetailID = parseInt(selectedRadio.value);
+
+                const label = selectedRadio.nextElementSibling;
+                const labelText = label.innerText || "";
+
+                // Lấy mô tả trước dấu '-'
+                const descParts = labelText.split("-");
+                warrantyDesc = descParts[0]?.trim() || "Unclear";
+
+                // Bóc phần giá
+                const priceMatch = labelText.match(/([\d.,]+)₫/);
+                if (priceMatch) {
+                    warrantyPrice = parseInt(priceMatch[1].replace(/[,\.]/g, ""));
+                }
+            }
+
+            selectProduct(componentID, realCategoryID, categoryName, brandName, price, imgURL, warrantyDesc, warrantyPrice, warrantyDetailID);
+        }
+
+    </script>
+</body>
+
+</html>
