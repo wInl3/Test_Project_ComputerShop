@@ -1,0 +1,37 @@
+# Build directories
+/dist/
+/build/
+/target/
+/out/
+
+# NetBeans specific
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# IntelliJ IDEA
+/.idea/
+/*.iml
+
+# Eclipse
+/.settings/
+/.project
+/.classpath
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Compiled classes and packages
+*.class
+*.jar
+*.war
+*.ear
+
+# OS files
+.DS_Store
+Thumbs.db
