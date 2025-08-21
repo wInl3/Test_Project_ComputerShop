@@ -1,0 +1,20 @@
+sonar.projectKey=_Admin_2004_
+sonar.projectName=Test-Project-ComputerShop
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+
+# Thư mục chứa code
+sonar.sources=src
+
+# Compiler target (Java 17)
+sonar.java.source=17
+
+# URL SonarQube server
+sonar.host.url=http://localhost:9000
+
+# Token của project
+sonar.login=sqp_eb9b486b3e7f55af30e011f2d981d5d0c93c4321
+
+# Thư mục chứa các file .class sau khi compile
+sonar.java.binaries=build/web/WEB-INF/classes
+

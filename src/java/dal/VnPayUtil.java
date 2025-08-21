@@ -22,7 +22,7 @@ public class VnPayUtil {
         return generateUrlInternal(txnRef, amount, bankCode, orderInfo);
     }
 
-    private static String generateUrlInternal(String txnRef, int amount, String bankCode, String orderInfo)
+    public static String generateUrlInternal(String txnRef, int amount, String bankCode, String orderInfo)
             throws UnsupportedEncodingException {
 
         Map<String, String> vnp_Params = new HashMap<>();
