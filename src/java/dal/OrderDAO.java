@@ -8,14 +8,22 @@ import java.util.ArrayList;
 import java.util.Random;
 import models.OrderCate; // Đảm bảo đã có class OrderCate
 import models.OrderItems;
+import org.apache.log4j.Logger;
 
 public class OrderDAO extends DBContext {
 
 // Hàm tạo order và trả về OrderID vừa tạo, trả về -1 nếu lỗi
+  
+
+    private static final Logger logger = Logger.getLogger(OrderDAO.class);
+
     public int createOrderAndReturnId(OrderCate order) {
         String sql = "INSERT INTO Orders (OrderCode, Product_Type, CustomerID, Address, FullName, PhoneNumber, TotalAmount, PaymentStatusID, Status, Note) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            logger.info("Executing query: " + sql);
+
             ps.setObject(1, order.getOrderCode());
             ps.setObject(2, order.getProduct_Type());
             ps.setInt(3, order.getCustomerID());
@@ -25,19 +33,31 @@ public class OrderDAO extends DBContext {
             ps.setInt(7, order.getTotalAmount());
             ps.setInt(8, order.getPaymentStatusID());
             ps.setInt(9, order.getStatus());
-            ps.setString(10, order.getNote()); // Thêm Note
+            ps.setString(10, order.getNote());
+
             int affectedRows = ps.executeUpdate();
+            logger.debug("Affected rows: " + affectedRows);
+
             if (affectedRows > 0) {
                 try (ResultSet rs = ps.getGeneratedKeys()) {
                     if (rs.next()) {
-                        return rs.getInt(1); // Trả về OrderID vừa tạo
+                        int orderId = rs.getInt(1);
+                        logger.info("Order created successfully with ID: " + orderId);
+                        return orderId;
+                    } else {
+                        logger.warn("Insert succeeded but no ID returned");
                     }
                 }
+            } else {
+                logger.warn("No rows inserted for order: " + order.getOrderCode());
             }
+
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            logger.error("SQL Exception in createOrderAndReturnId", ex);
+        } catch (Exception e) {
+            logger.error("Unexpected error in createOrderAndReturnId", e);
         }
-        return -1; // Lỗi
+        return -1;
     }
 
     // Tạo code ngẫu nhiên & đảm bảo không trùng
