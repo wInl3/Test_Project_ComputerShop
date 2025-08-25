@@ -1,4 +1,4 @@
-name: Java CI with SonarScanner
+name: Java CI with SonarScanner (Windows)
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
@@ -20,21 +20,34 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Prepare folders
+        run: |
+          mkdir lib
+          mkdir build\classes
+
+      - name: Download Jakarta Servlet API
+        run: |
+          curl -L -o lib\jakarta.servlet-api-6.0.0.jar ^
+            https://repo1.maven.org/maven2/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar
+
       - name: Compile Java files
-        run: javac $(find . -name "*.java")
+        run: |
+          dir /s /b src\*.java > sources.txt
+          javac -encoding UTF-8 -cp lib\jakarta.servlet-api-6.0.0.jar -d build\classes @sources.txt
 
       - name: Install SonarScanner
         run: |
-          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar-scanner.zip -d $HOME
-          echo "$HOME/sonar-scanner-5.0.1.3006-linux/bin" >> $GITHUB_PATH
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-windows.zip
+          tar -xf sonar-scanner.zip -C $env:USERPROFILE
+          echo "$env:USERPROFILE\sonar-scanner-5.0.1.3006-windows\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner \
-            -Dsonar.projectKey=SWP391_Ass \
-            -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.sources=.
+          sonar-scanner `
+            -Dsonar.projectKey=SWP391_Ass `
+            -Dsonar.host.url=http://localhost:9000 `
+            -Dsonar.login=sqp_e3be568ae77a762aadfc82fcb0553c5b04df67c3 `
+            -Dsonar.sources=src `
+            -Dsonar.java.binaries=build\classes
